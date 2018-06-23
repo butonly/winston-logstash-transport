@@ -1,0 +1,25 @@
+{
+  "name": "winston-logstash-transport",
+  "version": "1.0.0",
+  "description": "winston-logstash-transport",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/liuyanjie/winston-logstash-transport.git"
+  },
+  "keywords": [
+    "winston",
+    "logstash",
+    "transport",
+    "winston-logstash-transport"
+  ],
+  "author": "liuyanjie",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/liuyanjie/winston-logstash-transport/issues"
+  },
+  "homepage": "https://github.com/liuyanjie/winston-logstash-transport#readme"
+}
