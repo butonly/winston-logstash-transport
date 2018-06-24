@@ -15,12 +15,9 @@ class LogstashTransport extends winston.Transport {
     super(options)
 
     this.name = 'LogstashTransport'
-    this.pid = process.pid
 
     this.host = options.host
     this.port = options.port
-    this.hostname = options.hostname || os.hostname()
-    this.application = options.application
     this.trailingLineFeed = options.trailingLineFeed === true
     this.trailingLineFeedChar = options.trailingLineFeedChar || os.EOL
     this.silent = options.silent
@@ -40,13 +37,7 @@ class LogstashTransport extends winston.Transport {
       return callback(null, true)
     }
 
-    info.message.level = info[Symbol.for('level')]
-    info.message.application = this.application
-    info.message.hostname = this.hostname
-    info.message.pid = this.pid
-    info.message.time = new Date()
-
-    this.send(JSON.stringify(info.message), (err) => {
+    this.send(info[Symbol.for('message')], (err) => {
       this.emit('logged', !err)
       callback(err, !err)
     })
