@@ -53,4 +53,28 @@ class LogstashTransport extends winston.Transport {
   }
 }
 
+function createLogger(logType, config) {
+  const appendMetaInfo = winston.format((info) => {
+    return Object.assign(info, {
+      application: logType || config.application,
+      hostname: config.hostname || os.hostname(),
+      pid: process.pid,
+      time: new Date(),
+    })
+  })
+  
+  return winston.createLogger({
+    level: config.level || 'info',
+    format: winston.format.combine(
+      appendMetaInfo(),
+      winston.format.json(),
+      winston.format.timestamp(),
+    ),
+    transports: [
+      new LogstashTransport(config.transports.LogstashTransport)
+    ]
+  })
+}
+
 exports.LogstashTransport = LogstashTransport
+exports.createLogger = createLogger
