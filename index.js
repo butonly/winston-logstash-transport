@@ -68,7 +68,7 @@ function createLogger(logType, config) {
     format: winston.format.combine(
       appendMetaInfo(),
       winston.format.json(),
-      winston.format.timestamp(),
+      winston.format.timestamp()
     ),
     transports: [
       new LogstashTransport(config.transports.LogstashTransport)
